@@ -1,4 +1,4 @@
-# FinShare 💼📊
+# FinShare 💼📊 (In-Progress)
 
 Welcome to FinShare, a personal project developed to enhance my skills in ASP.NET Core Web API.
 
