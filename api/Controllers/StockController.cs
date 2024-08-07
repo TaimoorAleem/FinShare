@@ -30,7 +30,7 @@ namespace api.Controllers
 
             if (stock == null)
             {
-                return NotFound(); 
+                return NotFound("Unable to find stock with the specified Id"); 
             }
 
             return Ok(stock.ToStockDTO());
@@ -53,8 +53,7 @@ namespace api.Controllers
         {
             var stockModel = _context.Stocks.FirstOrDefault(x =>  x.Id == id);
 
-            if (stockModel == null) return NotFound();
-               
+            if (stockModel == null) return NotFound("Unable to find stock with the specified Id");
 
             stockModel.Symbol = updateDto.Symbol;
             stockModel.CompanyName = updateDto.CompanyName;
@@ -66,6 +65,19 @@ namespace api.Controllers
             _context.SaveChanges();
 
             return Ok(stockModel.ToStockDTO());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id) 
+        { 
+            var stockModel = _context.Stocks.FirstOrDefault(x => x.Id == id);
+
+            if (stockModel == null) return NotFound("Unable to find stock with the specified Id");
+
+            _context.Stocks.Remove(stockModel);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
