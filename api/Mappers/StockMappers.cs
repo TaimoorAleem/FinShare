@@ -19,7 +19,7 @@ namespace api.Mappers
             };
         }
 
-        public static Stock ToStockFromCreateDTO(this CreateStockRequestDto stockDto)
+        public static Stock ToStockFromCreateDTO(this CreateStockRequestDTO stockDto)
         {
             return new Stock
             {

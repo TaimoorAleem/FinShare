@@ -44,7 +44,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
+        public async Task<IActionResult> Create([FromBody] CreateStockRequestDTO stockDto)
         {
             var stockModel = stockDto.ToStockFromCreateDTO();
             await _stockRepository.CreateAsync(stockModel);
@@ -55,7 +55,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateStockRequestDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDTO updateStockRequestDto)
         {
             var stockModel = await _stockRepository.UpdateAsync(id, updateStockRequestDto);
 

@@ -1,6 +1,6 @@
 ﻿namespace api.DTOs.Stock
 {
-    public class UpdateStockRequestDto
+    public class UpdateStockRequestDTO
     {
         public string Symbol { get; set; } = string.Empty;
 
