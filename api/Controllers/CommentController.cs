@@ -18,7 +18,7 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAll()
         {
             var comments = await _commentRepository.GetAllAsync();
             var commentDto = comments.Select(s => s.ToCommentDTO());
@@ -53,9 +53,20 @@ namespace api.Controllers
         {
             var comment = await _commentRepository.UpdateAsync(id, updateCommentRequestDTO.ToCommentFromUpdate());
 
-            if (comment == null) return NotFound("Comment not found!");
+            if (comment == null) return NotFound("Comment does not exist!");
 
             return Ok(comment.ToCommentDTO());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var commentModel = await _commentRepository.DeleteAsync(id);
+
+            if (commentModel == null) return NotFound("Comment does not exist!");
+
+            return Ok(commentModel);
         }
     }
 }
