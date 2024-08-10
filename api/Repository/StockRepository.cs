@@ -50,11 +50,30 @@ namespace api.Repository
                 stocks = stocks.Where(s => s.Symbol.Contains(query.Symbol));
             }
 
-            if(!string.IsNullOrWhiteSpace(query.SortBy))
+            if (!string.IsNullOrWhiteSpace(query.SortBy))
             {
-                if (query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase)) // `StringComparison.OrdinalIgnoreCase` ensures the comparison is not affected by the case of the letters.
+                switch (query.SortBy.ToLower())
                 {
-                    stocks = query.IsAscending ? stocks.OrderBy(s => s.Symbol) : stocks.OrderByDescending(s => s.Symbol);
+                    case "symbol":
+                        stocks = query.IsAscending ? stocks.OrderBy(s => s.Symbol) : stocks.OrderByDescending(s => s.Symbol);
+                        break;
+                    case "companyname":
+                        stocks = query.IsAscending ? stocks.OrderBy(s => s.CompanyName) : stocks.OrderByDescending(s => s.CompanyName);
+                        break;
+                    case "purchase":
+                        stocks = query.IsAscending ? stocks.OrderBy(s => s.Purchase) : stocks.OrderByDescending(s => s.Purchase);
+                        break;
+                    case "lastdiv":
+                        stocks = query.IsAscending ? stocks.OrderBy(s => s.LastDiv) : stocks.OrderByDescending(s => s.LastDiv);
+                        break;
+                    case "industry":
+                        stocks = query.IsAscending ? stocks.OrderBy(s => s.Industry) : stocks.OrderByDescending(s => s.Industry);
+                        break;
+                    case "marketcap":
+                        stocks = query.IsAscending ? stocks.OrderBy(s => s.MarketCap) : stocks.OrderByDescending(s => s.MarketCap);
+                        break;
+                    default:
+                        break;
                 }
             }
 
