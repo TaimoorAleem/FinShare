@@ -21,7 +21,6 @@ namespace api.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var comments = await _commentRepository.GetAllAsync();
-
             var commentDto = comments.Select(s => s.ToCommentDTO());
 
             return Ok(commentDto);
@@ -43,10 +42,20 @@ namespace api.Controllers
             if (!await _stockRepository.StockExists(stockId)) return BadRequest("Stock does not exist!");
 
             var commentModel = createCommentDTO.ToCommentFromCreate(stockId);
-
             await _commentRepository.CreateAsync(commentModel);
 
-            return CreatedAtAction(nameof(GetById), new { id = commentModel }, commentModel.ToCommentDTO());
+            return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDTO());
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDTO updateCommentRequestDTO)
+        {
+            var comment = await _commentRepository.UpdateAsync(id, updateCommentRequestDTO.ToCommentFromUpdate());
+
+            if (comment == null) return NotFound("Comment not found!");
+
+            return Ok(comment.ToCommentDTO());
         }
     }
 }
