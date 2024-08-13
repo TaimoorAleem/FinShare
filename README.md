@@ -1,6 +1,6 @@
 # FinShare 💼📊 (In-Progress)
 
-Welcome to FinShare, a personal project being developed to enhance my skills in ASP.NET Core Web API.
+Welcome to FinShare, a personal project I'm developing to enhance my skills in ASP.NET Core Web API.
 
 ### Features Implemented So Far: 📝
 
