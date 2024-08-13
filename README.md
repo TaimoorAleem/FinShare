@@ -1,26 +1,39 @@
 # FinShare 💼📊 (In-Progress)
 
-Welcome to FinShare, a personal project developed to enhance my skills in ASP.NET Core Web API.
+Welcome to FinShare, a personal project being developed by me to enhance my skills in ASP.NET Core Web API.
 
-### Features Implemented and Concepts Learned So Far: 📝
+### Features Implemented So Far: 📝
 
 - **Controllers and Actions**
-  - StockController: Manages CRUD operations for stock entities, demonstrating the creation of RESTful APIs.
-    - **GetAll()**: Fetches all stock records and returns them as DTOs.
+  - **StockController** (and **CommentController** which is also similar): Manages CRUD operations for stock entities, demonstrating the creation of RESTful APIs.
+    - **GetAll(QueryObject query)**: Fetches all stock records based on optional filters and sorting parameters, returning them as DTOs.
     - **GetById(int id)**: Fetches a specific stock record by its ID and returns it as a DTO.
     - **Create(CreateStockRequestDto stockDto)**: Creates a new stock record from the provided DTO and saves it in the database.
     - **Update(int id, UpdateStockRequestDto updateDto)**: Updates an existing stock record identified by its ID with the provided DTO.
     - **Delete(int id)**: Deletes an existing stock record identified by its ID.
+
 - **DTOs (Data Transfer Objects)**
   - Implemented DTOs to encapsulate data and reduce the number of parameters passed to methods, improving code maintainability.
+    
 - **Entity Framework Core**
   - Utilized EF Core for data access and ORM (Object-Relational Mapping) to interact with the SQL Server database.
   - Configured DbContext and connection strings to establish a connection with the SQL Server database.
+    
 - **Dependency Injection**
   - Implemented dependency injection to inject DbContext into the controller, following the best practices for ASP.NET Core.
+    
 - **Asynchronous Programming**
   - Utilized asynchronous methods (e.g., `async` and `await`) to ensure non-blocking operations for database access, improving application performance.
-
+    
+- **Repository Pattern**
+  - Applied the repository pattern to abstract data access logic, separating it from business logic and providing a clean API for data operations. This approach promotes a more maintainable and testable codebase.
+    
+- **Filtering**
+  - Implemented filtering functionality in the GetAllAsync methods to allow users to filter records based on specific criteria, enabling more granular data retrieval based on user-defined parameters.
+    
+- **Dynamic Sorting**
+  - Enhanced the GetAllAsync method in the StockController to support dynamic sorting by multiple fields. Sorting order can be specified as ascending or descending.
+    
 ### Getting Started 💻
 
 Follow these steps to run the project locally on a Windows or compatible environment. Ensure that the .NET SDK and other dependencies are installed.
