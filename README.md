@@ -1,16 +1,20 @@
-# FinShare 💼📊 (In-Progress)
+# FinShare 💼📊
 
-Welcome to FinShare, a personal project I'm developing to enhance my skills in ASP.NET Core Web API.
+Welcome to FinShare, a personal project I've developed to enhance my skills in ASP.NET Core Web API. This is a comprehensive backend-only application that provides robust APIs for managing stock portfolios and commenting on stocks, enabling users to efficiently manage and share their financial investments.
 
-### Features Implemented So Far: 📝
+### Features Implemented: 📝
 
 - **Controllers and Actions**
   - **StockController** (and **CommentController** which is also similar): Manages CRUD operations for stock entities, demonstrating the use of RESTful APIs.
-    - **GetAll(QueryObject query)**: Fetches all stock records based on optional filters and sorting parameters, returning them as DTOs.
-    - **GetById(int id)**: Fetches a specific stock record by its ID and returns it as a DTO.
-    - **Create(CreateStockRequestDto stockDto)**: Creates a new stock record from the provided DTO and saves it in the database.
-    - **Update(int id, UpdateStockRequestDto updateDto)**: Updates an existing stock record identified by its ID with the provided DTO.
-    - **Delete(int id)**: Deletes an existing stock record identified by its ID.
+    - GetAll(QueryObject query): Fetches all stock records based on optional filters and sorting parameters, returning them as DTOs.
+    - GetById(int id): Fetches a specific stock record by its ID and returns it as a DTO.
+    - Create(CreateStockRequestDto stockDto): Creates a new stock record from the provided DTO and saves it in the database.
+    - Update(int id, UpdateStockRequestDto updateDto): Updates an existing stock record identified by its ID with the provided DTO.
+    - Delete(int id): Deletes an existing stock record identified by its ID.
+  - **PortfolioController:** Manages the user's stock portfolio.
+    - GetPortfolio(): Retrieves the logged-in user's portfolio.
+    - AddToPortfolio(string symbol): Adds a stock to the logged-in user's portfolio.
+    - DeleteFromPortfolio(string symbol): Removes a stock from the logged-in user's portfolio.
 
 - **DTOs (Data Transfer Objects)**
   - Implemented DTOs to encapsulate data and reduce the number of parameters passed to methods, improving code maintainability.
@@ -38,14 +42,15 @@ Welcome to FinShare, a personal project I'm developing to enhance my skills in A
   - Added JWT authentication to secure endpoints. Users must be authenticated to access certain resources.
   - Updated Swagger configuration to support JWT Bearer token authorization.
 
-- Relationships Between Models:
+- **Relationships Between Models**:
   - A **Many-To-Many** relationship between User and Stock through the Portfolio entity. The Primary Key is a composite key consisting of AppUserId and StockId.
   - A **One-To-Many** relationship between Stocks and Comments.
+  - A **One-To-One** relationship between Comment and User to display the username associated with each comment.
 
     
 ### Getting Started 💻
 
-Follow these steps to run the project locally on a Windows or compatible environment. Ensure that the .NET SDK and other dependencies are installed.
+Follow these steps to run the project locally on a Windows or compatible environment. Ensure that the .NET SDK, SQL Server and other dependencies are installed.
 
 1. **Clone the Repository:**
    ```bash
