@@ -77,4 +77,4 @@ Follow these steps to run the project locally on a Windows or compatible environ
 
 
 
-P.S: I couldnt think of a better signin key in the app.settings.json file 💀
+P.S: I couldnt think of a better signin key in the appsettings.json file 💀
