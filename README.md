@@ -1,11 +1,11 @@
 # FinShare 💼📊 (In-Progress)
 
-Welcome to FinShare, a personal project being developed by me to enhance my skills in ASP.NET Core Web API.
+Welcome to FinShare, a personal project I'm developing to enhance my skills in ASP.NET Core Web API.
 
 ### Features Implemented So Far: 📝
 
 - **Controllers and Actions**
-  - **StockController** (and **CommentController** which is also similar): Manages CRUD operations for stock entities, demonstrating the creation of RESTful APIs.
+  - **StockController** (and **CommentController** which is also similar): Manages CRUD operations for stock entities, demonstrating the use of RESTful APIs.
     - **GetAll(QueryObject query)**: Fetches all stock records based on optional filters and sorting parameters, returning them as DTOs.
     - **GetById(int id)**: Fetches a specific stock record by its ID and returns it as a DTO.
     - **Create(CreateStockRequestDto stockDto)**: Creates a new stock record from the provided DTO and saves it in the database.
@@ -33,6 +33,15 @@ Welcome to FinShare, a personal project being developed by me to enhance my skil
     
 - **Dynamic Sorting**
   - Enhanced the GetAllAsync method in the StockController to support dynamic sorting by multiple fields. Sorting order can be specified as ascending or descending.
+
+- **JWT Authentication**
+  - Added JWT authentication to secure endpoints. Users must be authenticated to access certain resources.
+  - Updated Swagger configuration to support JWT Bearer token authorization.
+
+- Relationships Between Models:
+  - A **Many-To-Many** relationship between User and Stock through the Portfolio entity. The Primary Key is a composite key consisting of AppUserId and StockId.
+  - A **One-To-Many** relationship between Stocks and Comments.
+
     
 ### Getting Started 💻
 
