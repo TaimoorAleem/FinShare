@@ -73,3 +73,8 @@ Follow these steps to run the project locally on a Windows or compatible environ
    dotnet run
    ```
 6. Access the API: Open your browser and navigate to http://localhost:5000 to interact with the API. You can use tools like Swagger for testing the endpoints.
+
+
+
+
+P.S: I couldnt think of a better signin key in the app.settings.json file 💀
