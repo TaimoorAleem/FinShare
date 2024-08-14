@@ -2,6 +2,7 @@
 using api.Models;
 using Microsoft.EntityFrameworkCore;
 using Server.Interfaces;
+using Server.Models;
 
 namespace Server.Repository
 {
@@ -12,6 +13,27 @@ namespace Server.Repository
         public PortfolioRepository(ApplicationDBContext context) 
         {
             _context = context; 
+        }
+
+        public async Task<Portfolio> AddToPortfolioAsync(Portfolio portfolio)
+        {
+            await _context.Portfolios.AddAsync(portfolio);
+            await _context.SaveChangesAsync();
+
+            return portfolio;
+        }
+
+        public async Task<Portfolio> DeleteFromPortfolio(AppUser appUser, string symbol)
+        {
+            var portfolioModel = await _context.Portfolios.FirstOrDefaultAsync(x => x.AppUserId == appUser.Id && x.Stock.Symbol == symbol);
+
+            if (portfolioModel == null) return null;
+
+            _context.Portfolios.Remove(portfolioModel);
+
+            await _context.SaveChangesAsync();
+
+            return portfolioModel;
         }
 
         public async Task<List<Stock>> GetUserPortfolio(AppUser user)
